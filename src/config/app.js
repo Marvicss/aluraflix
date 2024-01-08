@@ -1,6 +1,6 @@
 import  express  from "express";
 import conectanoBanco from "./dbConfig.js";
-import routes from "../index.js";
+import routes from "../../index.js";
 
 const conexao = await conectanoBanco();
 
