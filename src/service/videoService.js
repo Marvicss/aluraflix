@@ -13,6 +13,35 @@ class VideoService{
         return videos;
     }
 
+    static async create(newVideo){
+        if(newVideo.titulo == ''){
+            throw new Error(console.error("Titulo em Branco"))
+        }
+        if(newVideo.descricao == ''){
+            throw new Error(console.error("Descricao vazia"))
+        }else{
+            await VideoRepository.create(newVideo);
+        }
+    }
+
+    static async update(id, newData){
+        try{
+        const newVideo = await VideoRepository.update(id, newData);
+        return newVideo;
+        }catch(error){
+            throw error;
+        }
+    }
+
+    static async delete(id){
+        try{
+        const videoDeletado = await VideoRepository.delete(id);
+        return videoDeletado;
+        }catch(error){
+            throw error;
+        }
+    }
+
 }
 
 

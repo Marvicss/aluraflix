@@ -24,6 +24,39 @@ class VideoController{
         
     }
 
+    static async create(req,res){
+        try{
+            const newVideo = req.body;
+            await VideoService.create(newVideo);
+            res.status(201).json({message: "Usuário Enviado"});
+        }catch(error){
+            res.status(400).json({message: "Falha ao enviar usuário"});
+        }
+    }
+
+    static async update(req,res){
+        const newData = req.body;
+        const id = req.params.id;
+
+        try{
+            const videoAtualizado = await VideoService.update(id, newData);
+            res.status(200).json(videoAtualizado);
+        }catch(error){
+            res.status(400).json({message: "Falha ao atualizar"});
+        }
+        
+    }
+
+    static async delete(req,res){
+        try{
+            const id= req.params.id;
+            const videoDeletado = await VideoService.delete(id);
+            res.status(200).json({message: videoDeletado});
+        }catch(error){
+            res.status(404).json({message: "Falha ao deletar video;"})
+        }
+    }
+
 }
 
 export default VideoController;
