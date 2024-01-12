@@ -34,9 +34,17 @@ class VideoService{
     }
 
     static async delete(id){
+        
         try{
-        const videoDeletado = await VideoRepository.delete(id);
-        return videoDeletado;
+            if(newVideo.titulo == '' || 'titulo' in newVideo == false){
+                throw new Error(console.error("Titulo em Branco"))
+            }
+            if(newVideo.descricao == '' || 'descricao' in newVideo == false){
+                throw new Error(console.error("Descricao vazia"))
+            }else{
+                const videoDeletado = await VideoRepository.delete(id);
+                return videoDeletado;
+            }
         }catch(error){
             throw error;
         }
