@@ -14,10 +14,10 @@ class VideoService{
     }
 
     static async create(newVideo){
-        if(newVideo.titulo == ''){
+        if(newVideo.titulo == '' || 'titulo' in newVideo == false){
             throw new Error(console.error("Titulo em Branco"))
         }
-        if(newVideo.descricao == ''){
+        if(newVideo.descricao == '' || 'descricao' in newVideo == false){
             throw new Error(console.error("Descricao vazia"))
         }else{
             await VideoRepository.create(newVideo);
