@@ -26,25 +26,27 @@ class VideoService{
 
     static async update(id, newData){
         try{
-        const newVideo = await VideoRepository.update(id, newData);
-        return newVideo;
-        }catch(error){
-            throw error;
-        }
-    }
 
-    static async delete(id){
-        
-        try{
             if(newVideo.titulo == '' || 'titulo' in newVideo == false){
                 throw new Error(console.error("Titulo em Branco"))
             }
             if(newVideo.descricao == '' || 'descricao' in newVideo == false){
                 throw new Error(console.error("Descricao vazia"))
             }else{
-                const videoDeletado = await VideoRepository.delete(id);
-                return videoDeletado;
+                const newVideo = await VideoRepository.update(id, newData);
+                return newVideo;
             }
+        }catch(error){
+            throw error;
+        }
+    }
+
+    static async delete(id){
+        try{
+        
+            const videoDeletado = await VideoRepository.delete(id);
+            return videoDeletado;
+            
         }catch(error){
             throw error;
         }
